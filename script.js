@@ -1,6 +1,4 @@
-alert("script.js is working");
-
 document.addEventListener("DOMContentLoaded", () => {
   const img = document.getElementById("calendar");
-  img.src = "./images/test.png";
+  img.src = "/images/test.png";
 });
