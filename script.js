@@ -1,4 +1,1 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const img = document.getElementById("calendar");
-  img.src = "/images/test.png";
-});
+<script src="script.js?v=2"></script>
