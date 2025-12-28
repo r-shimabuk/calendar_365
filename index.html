@@ -1,4 +1,8 @@
-<body>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>365 Calendar</title>
 
   <style>
     html, body {
@@ -17,32 +21,35 @@
       object-fit: contain;
     }
   </style>
+</head>
 
-  <img id="calendar" alt="calendar image">
+<body>
+
+  <img id="calendar" src="images/test.png" alt="calendar image">
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const img = document.getElementById("calendar");
+    const img = document.getElementById("calendar");
 
-      const today = new Date();
+    const today = new Date();
 
-      // 年初から何日目か
-      const start = new Date(today.getFullYear(), 0, 0);
-      const diff =
-        today - start +
-        (start.getTimezoneOffset() - today.getTimezoneOffset()) * 60 * 1000;
+    // 年初から何日目か
+    const start = new Date(today.getFullYear(), 0, 0);
+    const diff =
+      today - start +
+      (start.getTimezoneOffset() - today.getTimezoneOffset()) * 60 * 1000;
 
-      const dayNumber = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const dayString = String(dayNumber).padStart(3, "0");
+    const dayNumber = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const dayString = String(dayNumber).padStart(3, "0");
 
-      // 本命画像
-      img.src = `/images/day${dayString}.png`;
+    const imagePath = `images/day${dayString}.png`;
 
-      // フォールバック（まだ画像が無い場合）
-      img.onerror = () => {
-        img.src = "/images/test.png";
-      };
-    });
+    // 存在すれば切り替え、なければ test.png のまま
+    const testImage = new Image();
+    testImage.src = imagePath;
+    testImage.onload = () => {
+      img.src = imagePath;
+    };
   </script>
 
 </body>
+</html>
